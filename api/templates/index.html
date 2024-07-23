@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Processor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+            background: #fff;
+            margin-top: 50px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        input[type="file"] {
+            margin-right: 10px;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            background: #333;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #555;
+        }
+
+        #results {
+            margin-top: 20px;
+        }
+
+        pre {
+            background: #e8e8e8;
+            padding: 15px;
+            border: 1px solid #ccc;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Document Processor</h1>
+        <form id="uploadForm">
+            <input type="file" id="docs" name="docs" multiple>
+            <button type="button" onclick="processFiles()">Process Files</button>
+        </form>
+        <div id="results">
+            <h2>Insights</h2>
+            <pre id="insights"></pre>
+            <h2>References</h2>
+            <pre id="references"></pre>
+        </div>
+    </div>
+    <script>
+        async function processFiles() {
+            const form = document.getElementById('uploadForm');
+            const formData = new FormData(form);
+
+            try {
+                const response = await fetch('/api/process', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to process files');
+                }
+
+                const result = await response.json();
+
+                document.getElementById('insights').textContent = result.insights["Overall Insight"];
+                document.getElementById('references').textContent = result.references;
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error processing files');
+            }
+        }
+    </script>
+</body>
+</html>
