@@ -106,18 +106,25 @@ def get_vectors(text_chunks):
 
 def convo_chain():
     prompt_template = """
-        Create a review paper following IEEE format. Include the following sections in each more than 200 words:
-        1. Abstract
-        2. Introduction
-        3. Literature Review
-        4. Methodology
-        5. Results and Discussion
-        6. Conclusion
-        7. References
-        
-        Ensure you add reference paper details as [Number] Author's Initial(s). Author's Last Name, "Title of paper," Title of Journal, vol. number, no. number, pp. page range, Month Year. DOI
-        also add the names of paper which are only uploaded no other paper than this
+       You are an expert in writing academic research papers in the IEEE format. Create a research paper using the provided text. Follow these detailed instructions:
+
+        1. **Abstract**: Summarize the main objectives, methods, results, and conclusions of the research in approximately 150 words.
+
+        2. **Introduction**: Introduce the topic, outline the problem, and state the objectives of the research in more than 300 words.
+
+        3. **Literature Review**: Discuss previous research on the topic, highlight gaps, and explain how this research fills those gaps.
+
+        4. **Methodology**: Describe the methods and procedures used in the research in detail.
+
+        5. **Results and Discussion**: Present the research findings, interpret the results, and discuss their implications.
+
+        6. **Conclusion**: Summarize the key findings, their significance, and suggest areas for future research.
+
+        7. **References**: List all references in the following format: [Number] Author's Initial(s). Author's Last Name, "Title of paper," Title of Journal, vol. number, no. number, pp. page range, Month Year. DOI.
+
+        Ensure the paper is structured logically and adheres to the IEEE formatting guidelines. Only include references from the provided text.
         Text: {context}
+        
     """
     prompt = PromptTemplate(template=prompt_template, input_variables=['context'])
     model = ChatGoogleGenerativeAI(model='gemini-pro', temperature=0.3)

@@ -25,7 +25,7 @@ const EditableHtml = ({ initialHtml, onChange }: EditableHtmlProps) => {
       ref={divRef}
       contentEditable
       onInput={handleInput}
-      className="p-2 border rounded ring-2 ring-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-900 min-h-[200px]"
+      className="p-2 border rounded ring-2 ring-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-900 min-h-[800px]"
     />
   );
 };

@@ -5,7 +5,7 @@
   "scripts": {
     "flask-dev": "FLASK_DEBUG=1 pip3 install -r requirements.txt && python3 -m flask --app api/index run -p 8000",
     "next-dev": "next dev",
-    "dev": "concurrently \"npm run next-dev\" \"python api/index.py\"",
+    "dev": "concurrently \"npm run next-dev\" \"python3 api/index.py\"",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -40,7 +40,7 @@
     "clsx": "^2.1.1",
     "concurrently": "^8.2.2",
     "date-fns": "^3.6.0",
-    "docker": "^0.2.14",
+    "docker": "^1.0.0",
     "emailjs-com": "^3.2.0",
     "eslint": "8.46.0",
     "eslint-config-next": "13.4.12",
